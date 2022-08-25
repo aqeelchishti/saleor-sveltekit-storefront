@@ -1,0 +1,16 @@
+mutation CheckoutAddProductLine(
+  $checkoutToken: UUID!
+  $variantId: ID!
+  $locale: LanguageCodeEnum!
+  $productQuantity: Int!
+) {
+  checkoutLinesAdd(token: $checkoutToken, lines: [{ quantity: $productQuantity, variantId: $variantId }]) {
+    checkout {
+      ...CheckoutDetailsFragment
+    }
+    errors {
+      message
+      code
+    }
+  }
+}

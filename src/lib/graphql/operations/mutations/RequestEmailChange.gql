@@ -1,0 +1,23 @@
+mutation RequestEmailChange(
+  $newEmail: String!, 
+  $password: String!, 
+  $redirectUrl: String!
+) {
+  requestEmailChange(
+      channel: "default-channel",
+      newEmail: $newEmail,
+      password: $password,
+      redirectUrl: $redirectUrl
+  ) {
+    user {
+      email
+      firstName
+      lastName
+    }
+    errors {
+      field
+      message
+      code
+    }
+  }
+}

@@ -1,0 +1,21 @@
+mutation RegisterAccount(
+    $email: String!
+    $password: String!
+    $redirectUrl: String!
+) {
+    accountRegister(
+      input: { 
+        email: $email, 
+        password: $password
+        redirectUrl: $redirectUrl
+    }) {
+      user {
+        email
+        firstName
+      }
+      errors {
+        field
+        message
+      }
+    }
+}

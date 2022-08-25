@@ -1,0 +1,77 @@
+fragment ProductDetailsFragment on Product {
+  id
+  name
+  slug
+  description
+  seoDescription
+  seoTitle
+  isAvailableForPurchase
+  translation(languageCode: $locale) {
+    id
+    description
+    name
+  }
+  attributes {
+    #  ...SelectedAttributeDetailsFragment
+    attribute {
+      id
+      name
+      translation(languageCode: $locale) {
+        id
+        name
+      }
+      type
+      unit
+    }
+    values {
+      id
+      name
+      translation(languageCode: $locale) {
+        id
+        name
+        richText
+      }
+      value
+    }
+  }
+  category {
+    ...CategoryBasicFragment
+  }
+  defaultVariant {
+    id
+    name
+  }
+  variants {
+    ...ProductVariantDetailsFragment
+  }
+  pricing {
+    priceRange {
+      start {
+        gross {
+          #...PriceFragment
+          currency
+          amount
+        }
+      }
+    }
+    onSale
+    discount {
+      gross {
+        amount
+        currency
+      }
+    }
+  }
+  media {
+    url
+    alt
+    type
+  }
+  thumbnail {
+    url
+    alt
+  }
+  category {
+    name
+  }
+}

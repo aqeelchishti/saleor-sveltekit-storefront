@@ -1,0 +1,23 @@
+query CurrentUserDetails {
+  me {
+    id
+    email
+    firstName
+    lastName
+    isActive
+    orders(first: 100) {
+      edges {
+        node {
+          number
+          created
+          status
+          total {
+            gross {
+              amount
+            }
+          }
+        }
+      }
+    }
+  }
+}

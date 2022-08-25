@@ -1,0 +1,16 @@
+fragment AddressDetailsFragment on Address {
+  id
+  firstName
+  lastName
+  phone
+  streetAddress1
+  city
+  postalCode
+  countryArea
+  isDefaultBillingAddress
+  isDefaultShippingAddress
+  country {
+    code
+    country
+  }
+}

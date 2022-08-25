@@ -1,0 +1,33 @@
+query ProductPaths($first: Int!, $after: String, $channel: String!, $filter: ProductFilterInput) {
+	products(first: $first, channel: $channel, after: $after filter: $filter) {
+		pageInfo {
+			...PageInfoFragment
+		}
+		edges {
+			node {
+				id
+				name
+				slug
+				category {
+          slug
+					name
+				}
+				pricing {
+					onSale
+					priceRange {
+						start {
+							currency
+							gross {
+								amount
+							}
+						}
+					}
+				}
+				thumbnail(size: 255) {
+					alt
+					url
+				}
+			}
+		}
+	}
+}

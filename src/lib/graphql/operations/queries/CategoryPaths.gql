@@ -1,0 +1,41 @@
+query CategoryPaths($after: String, $channel: String) {
+  categories(first: 80, after: $after) {
+    pageInfo {
+      ...PageInfoFragment
+    }
+    edges {
+      node {
+        id
+        slug
+        name
+        products(first: 100, channel: $channel) {
+          edges {
+            node {
+              id
+              name
+              slug
+              category {
+                name
+              }
+              pricing {
+                onSale
+                priceRange {
+                  start {
+                    currency 
+                    gross {
+                      amount
+                    }
+                  }
+                }
+              }
+              thumbnail(size: 255) {
+                alt
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+mutation CheckoutShippingAddressUpdate(
+  $token: UUID!
+  $locale: LanguageCodeEnum!
+  $firstname: String!
+  $lastname: String!
+  $company: String
+  $phone: String!
+  $streetAddress: String!
+  $city: String!
+  $postalcode: String!
+  $state: String!
+  $country: CountryCode!
+) {
+  checkoutShippingAddressUpdate(
+    shippingAddress: {
+      firstName: $firstname,
+      lastName: $lastname,
+      companyName: $company,
+      phone: $phone,
+      streetAddress1: $streetAddress,
+      city: $city,
+      postalCode: $postalcode,
+      countryArea: $state,
+      country: $country
+    }, 
+    token: $token
+  ) {
+    checkout {
+      ...CheckoutDetailsFragment
+    }
+    errors {
+      field
+      message
+      code
+    }
+  }
+}

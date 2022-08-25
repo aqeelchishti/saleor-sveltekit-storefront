@@ -1,0 +1,32 @@
+query CategoryBySlug($slug: String!, $channel: String, $locale: LanguageCodeEnum!) {
+  category(slug: $slug) {
+    ...CategoryDetailsFragment
+    products(first: 100, channel: $channel) {
+          edges {
+            node {
+              id
+              name
+              slug
+              category {
+                name
+              }
+              pricing {
+                onSale
+                priceRange {
+                  start {
+                    currency 
+                    gross {
+                      amount
+                    }
+                  }
+                }
+              }
+              thumbnail(size: 255) {
+                alt
+                url
+              }
+            }
+          }
+        }
+  }
+}

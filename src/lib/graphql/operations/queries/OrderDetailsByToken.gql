@@ -1,0 +1,69 @@
+query OrderDetailsByToken($token: UUID!) {
+  orderByToken(token: $token) {
+    id
+    status
+    number
+    shippingAddress {
+      ...AddressDetailsFragment
+    }
+    billingAddress {
+      ...AddressDetailsFragment
+    }
+    subtotal {
+      net {
+        ...PriceFragment
+      }
+      tax {
+        ...PriceFragment
+      }
+    }
+    total {
+      gross {
+        ...PriceFragment
+      }
+    }
+    lines {
+      id
+      productName
+      variantName
+      quantity
+      thumbnail {
+        url
+        alt
+      }
+      unitPrice {
+        gross {
+          ...PriceFragment
+        }
+      }
+      totalPrice {
+        gross {
+          ...PriceFragment
+        }
+      }
+    }
+    shippingPrice {
+      gross {
+        ...PriceFragment
+      }
+    }
+    isPaid
+    paymentStatus
+    payments {
+      gateway
+      chargeStatus
+      paymentMethodType
+      capturedAmount {
+        amount
+        currency
+      }
+      creditCard {
+        brand
+        firstDigits
+        lastDigits
+        expMonth
+        expYear
+      }
+    }
+  }
+}

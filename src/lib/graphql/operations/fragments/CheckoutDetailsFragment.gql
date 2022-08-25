@@ -1,0 +1,59 @@
+fragment CheckoutDetailsFragment on Checkout {
+  id
+  token
+  email
+  billingAddress {
+    ...AddressDetailsFragment
+  }
+  shippingAddress {
+    ...AddressDetailsFragment
+  }
+  shippingMethod {
+    ...DeliveryMethodFragment
+  }
+  isShippingRequired
+  availableShippingMethods {
+    ...DeliveryMethodFragment
+  }
+  availablePaymentGateways {
+    id
+    name
+    config {
+      field
+      value
+    }
+  }
+  lines {
+    ...CheckoutLineDetailsFragment
+  }
+  discount {
+    #...PriceFragment
+    currency
+    amount
+  }
+  discountName
+  subtotalPrice {
+    net {
+      ...PriceFragment
+    }
+    tax {
+      #...PriceFragment
+      currency
+      amount
+    }
+  }
+  shippingPrice {
+    gross {
+      #...PriceFragment
+      currency
+      amount
+    }
+  }
+  totalPrice {
+    gross {
+      #...PriceFragment
+      currency
+      amount
+    }
+  }
+}

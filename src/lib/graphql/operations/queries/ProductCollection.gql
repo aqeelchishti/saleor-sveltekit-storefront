@@ -1,0 +1,37 @@
+query ProductCollection(
+  $before: String,
+  $after: String,
+  $channel: String!,
+  $locale: LanguageCodeEnum!,
+  $searchFilter: String,
+  $directionOrder: OrderDirection = ASC,
+  $fieldName: ProductOrderField = PUBLISHED
+) {
+  products(
+    first: 100, 
+    channel: $channel, 
+    after: $after, 
+    before: $before, 
+    filter: {
+      search: $searchFilter
+    },
+    sortBy: {
+      direction: $directionOrder,
+      field: $fieldName
+    }
+  ) {
+    totalCount
+    edges {
+      cursor
+      node {
+        ...ProductCardFragment
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

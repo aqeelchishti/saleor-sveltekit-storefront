@@ -1,0 +1,36 @@
+fragment ProductCardFragment on Product {
+  id
+  name
+  slug
+  description
+  translation(languageCode: $locale) {
+    id
+    name
+  }
+  thumbnail {
+    ...ImageFragment
+  }
+  category {
+    id
+    name
+    translation(languageCode: $locale) {
+      id
+      name
+    }
+  }
+  pricing {
+    onSale
+    priceRange {
+      start {
+        gross {
+          ...PriceFragment
+        }
+      }
+      stop {
+        gross {
+          ...PriceFragment
+        }
+      }
+    }
+  }
+}

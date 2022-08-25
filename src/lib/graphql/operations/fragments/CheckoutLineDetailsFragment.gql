@@ -1,0 +1,47 @@
+fragment CheckoutLineDetailsFragment on CheckoutLine {
+  id
+  totalPrice {
+    gross {
+      #...PriceFragment
+      currency
+      amount
+    }
+  }
+  variant {
+    id
+    product {
+      id
+      name
+      translation(languageCode: $locale) {
+        id
+        name
+      }
+      slug
+      thumbnail {
+        ...ImageFragment
+      }
+    }
+    pricing {
+      onSale
+      discount {
+        gross {
+          amount
+          currency
+        }
+      }
+      price {
+        gross {
+          #...PriceFragment
+          currency
+          amount
+        }
+      }
+    }
+    name
+    translation(languageCode: $locale) {
+      id
+      name
+    }
+  }
+  quantity
+}

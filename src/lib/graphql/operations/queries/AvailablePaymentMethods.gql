@@ -1,0 +1,13 @@
+query AvailablePaymentMethods($channel: String!) {
+  shop {
+    availablePaymentGateways(channel: $channel) {
+      id
+      name
+      config {
+          field
+          value
+      }
+      currencies
+    }
+  }
+}
